@@ -20,6 +20,7 @@ import { OperatappliEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 @NgModule({
   imports: [
@@ -31,6 +32,10 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
       alertTimeout: 5000,
       i18nEnabled: true,
       defaultI18nLang: 'fr'
+    }),
+    NgxMapboxGLModule.withConfig({
+      accessToken: 'pk.eyJ1IjoiYWJvdWJha3JuZG9uZyIsImEiOiJjanJzd3hpdjQwZjRtNDRteXpxMjltMGwzIn0.p75-6jc5BbNG5JpY-WBxLg', // Optionnal, can also be set per map (accessToken input of mgl-map)
+      geocoderAccessToken: 'TOKEN' // Optionnal, specify if different from the map access token, can also be set per mgl-geocoder (accessToken input of mgl-geocoder)
     }),
     OperatappliSharedModule.forRoot(),
     OperatappliCoreModule,

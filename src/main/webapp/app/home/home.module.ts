@@ -3,9 +3,18 @@ import { RouterModule } from '@angular/router';
 
 import { OperatappliSharedModule } from 'app/shared';
 import { HOME_ROUTE, HomeComponent } from './';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 @NgModule({
-  imports: [OperatappliSharedModule, RouterModule.forChild([HOME_ROUTE])],
+  imports: [
+    OperatappliSharedModule,
+    RouterModule.forChild([HOME_ROUTE]),
+    NgxMapboxGLModule,
+    NgxMapboxGLModule.withConfig({
+      accessToken: 'pk.eyJ1IjoiYWJvdWJha3JuZG9uZyIsImEiOiJjanJzd3hpdjQwZjRtNDRteXpxMjltMGwzIn0.p75-6jc5BbNG5JpY-WBxLg', // Optionnal, can also be set per map (accessToken input of mgl-map)
+      geocoderAccessToken: 'TOKEN' // Optionnal, specify if different from the map access token, can also be set per mgl-geocoder (accessToken input of mgl-geocoder)
+    })
+  ],
   declarations: [HomeComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
