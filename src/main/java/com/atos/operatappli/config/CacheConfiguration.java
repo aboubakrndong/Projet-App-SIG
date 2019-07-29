@@ -46,6 +46,21 @@ public class CacheConfiguration {
             createCache(cm, com.atos.operatappli.domain.User.class.getName());
             createCache(cm, com.atos.operatappli.domain.Authority.class.getName());
             createCache(cm, com.atos.operatappli.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.atos.operatappli.domain.Qos.class.getName());
+            createCache(cm, com.atos.operatappli.domain.Zones.class.getName());
+            createCache(cm, com.atos.operatappli.domain.Zones.class.getName() + ".qos");
+            createCache(cm, com.atos.operatappli.domain.Zones.class.getName() + ".kpis");
+            createCache(cm, com.atos.operatappli.domain.Zones.class.getName() + ".bts");
+            createCache(cm, com.atos.operatappli.domain.Kpi.class.getName());
+            createCache(cm, com.atos.operatappli.domain.Alertes.class.getName());
+            createCache(cm, com.atos.operatappli.domain.Alertes.class.getName() + ".techniciens");
+            createCache(cm, com.atos.operatappli.domain.Bts.class.getName());
+            createCache(cm, com.atos.operatappli.domain.Bts.class.getName() + ".alertes");
+            createCache(cm, com.atos.operatappli.domain.Taches.class.getName());
+            createCache(cm, com.atos.operatappli.domain.Taches.class.getName() + ".techniciens");
+            createCache(cm, com.atos.operatappli.domain.Technicien.class.getName());
+            createCache(cm, com.atos.operatappli.domain.Technicien.class.getName() + ".alertes");
+            createCache(cm, com.atos.operatappli.domain.Technicien.class.getName() + ".taches");
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -14,6 +14,18 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190729133719_added_entity_Qos.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190729133720_added_entity_Zones.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190729133721_added_entity_Kpi.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190729133722_added_entity_Alertes.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190729133723_added_entity_Bts.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190729133724_added_entity_Taches.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190729133725_added_entity_Technicien.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20190729133719_added_entity_constraints_Qos.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190729133721_added_entity_constraints_Kpi.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190729133722_added_entity_constraints_Alertes.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190729133723_added_entity_constraints_Bts.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190729133724_added_entity_constraints_Taches.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
