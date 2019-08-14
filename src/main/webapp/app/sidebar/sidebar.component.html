@@ -1,0 +1,132 @@
+
+<!-- code de la barre de recherche -->
+
+<nav class="navbar navbar-expand-lg navbar-light btn-success">
+    <a class="navbar-brand" href="#">Barre de recherche</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+
+        <mat-form-field color="accent">
+            <input  matInput [matDatepicker]="picker1" placeholder="Choisissez date de début">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field color="warn">
+            <input matInput [matDatepicker]="picker2" placeholder=" Choisissez date de fin ">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Rechercher </button>
+
+    </div>
+</nav>
+
+
+<!-- fin du code de la barre de recherche-->
+
+
+
+<!-- debut code du  side nav-->
+
+<mat-sidenav-container class="sidenav-container">
+
+
+    <mat-sidenav #drawer mode="over"  opened="false" role="navigation" class="sidenav" fixedInViewport>
+        <mat-toolbar>Choisissez une zone</mat-toolbar>
+        <p></p>
+        <mat-form-field>
+            <mat-label> Zone:</mat-label>
+            <mat-select [(value)]="selectedValue" (selectionChange)="getZoneById($event)">
+                <mat-option *ngFor="let zone of listzone" value="{{ zone.id }}">{{ zone.nomzone }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="selectedValue">
+
+            <p>Informations de la zone</p>
+
+            <!-- code du tableau-->
+            <cdk-virtual-scroll-viewport itemSize="100" class="container" >
+                <ul>
+                    <li> Nom Zone: {{ zone?.nomzone}}</li>
+                    <li> Couverture: {{ zone?.couverture}}</li>
+                    <li> Population: {{ zone?.population}}</li>
+                    <li> Cadastre: {{ zone?.cadastre}}</li>
+                    <li> BTS:
+                        <ul *ngFor="let bts of zone.bts">
+                            <li> Etat: {{ bts.etat}}</li>
+                            <li> Puissance: {{ bts.puissance}}</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!--<mat-table [dataSource]="dataSource" class="mat-elevation-z8" class="classtable">
+                    &lt;!&ndash; Propriete Column &ndash;&gt;
+                    <ng-container matColumnDef="nomzone"  >
+                        <mat-header-cell *matHeaderCellDef> Nom Zone </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{zone.nomzone}} </mat-cell>
+                    </ng-container>
+
+                    &lt;!&ndash; valeur Column &ndash;&gt;
+                    <ng-container matColumnDef="population">
+                        <mat-header- *matHeaderCellDef> Populations </mat-header->
+                        <mat-cell *matCellDef="let element"> {{zone.population}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="cadastre">
+                        <mat-header-cell *matHeaderCellDef> Cadastre </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{zone.cadastre}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="couverture">
+                        <mat-header-cell *matHeaderCellDef> Couverture </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{zone.couverture}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns ; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>-->
+
+            </cdk-virtual-scroll-viewport>
+
+            <p></p>
+            <button> Modifier </button> <button>Télécharger</button> <button>Partager</button>
+
+        </div>
+        <!-- fin code tableau-->
+
+    </mat-sidenav>
+
+
+    <!-- fin code du side nav-->
+
+
+    <!-- debut code 2eme bar de menu -->
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button
+                type="button"
+                aria-label="Toggle sidenav"
+                mat-icon-button
+                (click)="drawer.toggle()">
+                <mat-icon aria-label="Side nav toggle icon">swap_horizontal_circle
+                </mat-icon>
+            </button>
+            <span>Appli Atos</span>
+        </mat-toolbar>
+        <!-- Add Content Here -->
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+
+    <!-- fin bar de menu-->
+
+</mat-sidenav-container>
+
+<!--fin code du side nav -->

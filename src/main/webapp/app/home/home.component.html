@@ -1,11 +1,26 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
 <mgl-map class="mglmap"
     [style]="'mapbox://styles/mapbox/streets-v9'"
-    [zoom]="[3]"
-    [center]="[-77.38, 39]"
->
-</mgl-map>
+    [zoom]="[13]"
+    [center]="[-17.4709569, 14.7117548]"
 
+>
+    <mgl-popup
+        [lngLat]="[-17.4709569, 14.7117548]"
+        [closeOnClick]="false"
+    >
+        <h1> Atos senegal</h1>
+
+    </mgl-popup>
+
+
+    <mgl-control mglFullscreen></mgl-control>
+    <mgl-control mglNavigation></mgl-control>
+
+
+</mgl-map>
 
 <!--
 <div class="row">

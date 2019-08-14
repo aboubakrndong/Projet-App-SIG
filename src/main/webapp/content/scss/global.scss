@@ -1,6 +1,8 @@
 @import '~mapbox-gl/dist/mapbox-gl.css';
 @import '~@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css';
 
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 .mglmap {
   position: absolute;
   height: 1000%;

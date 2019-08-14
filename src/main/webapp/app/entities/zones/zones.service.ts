@@ -41,4 +41,12 @@ export class ZonesService {
     const options = createRequestOption(req);
     return this.http.get<IZones[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
   }
+
+  //je cree la fonction findAll qui renvoie la liste des zones
+
+  findAll(): Observable<EntityArrayResponseType> {
+    return this.http.get<IZones[]>(`${this.resourceUrl}`, { observe: 'response' });
+  }
+
+  //fin de la fonction findAll
 }
