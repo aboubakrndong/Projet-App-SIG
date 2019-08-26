@@ -81,6 +81,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+import { CreatealerteComponent } from 'app/createalerte/createalerte.component';
+import { PopupComponent } from 'app/popup/popup.component';
+import { CreatezoneComponent } from 'app/createzone/createzone.component';
 
 @NgModule({
   imports: [
@@ -172,7 +175,10 @@ import { MatTreeModule } from '@angular/material/tree';
     PageRibbonComponent,
     ActiveMenuDirective,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    CreatezoneComponent,
+    PopupComponent,
+    CreatealerteComponent
   ],
   providers: [
     {
@@ -196,6 +202,7 @@ import { MatTreeModule } from '@angular/material/tree';
       multi: true
     }
   ],
+  exports: [SidebarComponent, MatTableModule],
   bootstrap: [JhiMainComponent]
 })
 export class OperatappliAppModule {

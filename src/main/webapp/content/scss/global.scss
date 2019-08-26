@@ -1,25 +1,46 @@
-@import '~mapbox-gl/dist/mapbox-gl.css';
-@import '~@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css';
-
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-
-.mglmap {
-  position: absolute;
-  height: 1000%;
-  width: 100%;
-  top: 100px;
-  bottom: 700px;
-}
-
 @import 'bootstrap-variables';
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import '~mapbox-gl/dist/mapbox-gl.css';
+@import '~@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css';
 
 /* ==============================================================
 Bootstrap tweaks
 ===============================================================*/
 
-body,
+.labelvue {
+  font-size: 25px;
+  color: orangered;
+}
+
+.marker {
+  background-image: url('mapbox-icon.png');
+  background-size: cover;
+  width: 70px;
+  height: 70px;
+  border-radius: 60%;
+  cursor: pointer;
+}
+
+.mglmap {
+  position: absolute;
+  height: 800px;
+  width: 100%;
+  top: 70px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
 h1,
 h2,
 h3,

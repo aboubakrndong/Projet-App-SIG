@@ -41,4 +41,8 @@ export class BtsService {
     const options = createRequestOption(req);
     return this.http.get<IBts[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
   }
+
+  findAll(): Observable<EntityArrayResponseType> {
+    return this.http.get<IBts[]>(`${this.resourceUrl}`, { observe: 'response' });
+  }
 }

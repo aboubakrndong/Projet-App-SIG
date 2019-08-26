@@ -80,4 +80,12 @@ export class TechnicienService {
     }
     return res;
   }
+
+  // fonction findAll qui renvoie la liste des technicien
+
+  findAll(): Observable<EntityArrayResponseType> {
+    return this.http.get<ITechnicien[]>(`${this.resourceUrl}`, { observe: 'response' });
+  }
+
+  //fin de la fonction findAll
 }

@@ -1,19 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+
 import { MatTableDataSource } from '@angular/material';
 import { ZonesService } from 'app/entities/zones';
 import { IZones } from 'app/shared/model/zones.model';
 import { IQos } from 'app/shared/model/qos.model';
 import { IKpi } from 'app/shared/model/kpi.model';
 import { IBts } from 'app/shared/model/bts.model';
-
-import { MatDialog } from '@angular/material/dialog';
-
-import * as jsPDF from 'jspdf';
-import 'jspdf-autotable';
-
-import * as html2canvas from 'html2canvas';
-import { PopupComponent } from 'app/popup/popup.component';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 export interface PeriodicElement {
   id?: number;
@@ -27,19 +20,20 @@ export interface PeriodicElement {
 }
 
 @Component({
-  selector: 'jhi-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  selector: 'jhi-main-nav',
+  templateUrl: './main-nav.component.html',
+  styleUrls: ['./main-nav.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class MainNavComponent {
   listzone: IZones[];
   ELEMENT_DATA: PeriodicElement[];
   zone: IZones;
   selectedValue: number;
   displayedColumns: string[] = ['nomzone', 'couverture', 'cadastre', 'population'];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+  opened = false;
 
-  constructor(public dialog: MatDialog, private zoneService: ZonesService, private modalService: NgbModal) {}
+  constructor(private breakpointObserver: BreakpointObserver, private zoneService: ZonesService) {}
 
   ngOnInit(): void {
     this.listzone = new Array<IZones>();
@@ -67,34 +61,7 @@ export class SidebarComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     });
   }
-
-  deleteZone(event: any) {
-    this.zoneService.delete(this.selectedValue).subscribe(zone => {
-      console.log(zone);
-      this.zone = zone.body;
-    });
-  }
-
-  /* ConvertDataToPdf ()
-  {
-    var data = document.getElementById('contentToConvert');
-    html2canvas(data).then(canvas=>{
-      var imgWidth = 105;
-      var pageHeight = 120;
-      var imgHeight = canvas.height * imgWidth / canvas.width;
-      var heightLeft = imgHeight;
-
-      const contentDataURL = canvas.toDataURL('image/png')
-      let pdf = new jsPDF('p', 'mm', 'a4');
-      var position=0;
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth,imgHeight)
-      pdf.save('File.pdf');
-    });
-
-  }*/
-
-  ShareData() {
-    const modalRef: NgbModalRef = this.modalService.open(PopupComponent, { windowClass: 'create-modal' });
-    modalRef.componentInstance.zone = this.zone;
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
