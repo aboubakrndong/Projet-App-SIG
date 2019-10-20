@@ -84,6 +84,11 @@ import { MatTreeModule } from '@angular/material/tree';
 import { CreatealerteComponent } from 'app/createalerte/createalerte.component';
 import { PopupComponent } from 'app/popup/popup.component';
 import { CreatezoneComponent } from 'app/createzone/createzone.component';
+import { EnvoismsComponent } from './envoisms/envoisms.component';
+import { VoirbtsComponent } from './voirbts/voirbts.component';
+import { VuekpiComponent } from './vuekpi/vuekpi.component';
+import { VueqosComponent } from './vueqos/vueqos.component';
+import { VuebtsComponent } from './vuebts/vuebts.component';
 
 @NgModule({
   imports: [
@@ -178,7 +183,12 @@ import { CreatezoneComponent } from 'app/createzone/createzone.component';
     SidebarComponent,
     CreatezoneComponent,
     PopupComponent,
-    CreatealerteComponent
+    CreatealerteComponent,
+    EnvoismsComponent,
+    VoirbtsComponent,
+    VuekpiComponent,
+    VueqosComponent,
+    VuebtsComponent
   ],
   providers: [
     {

@@ -41,4 +41,8 @@ export class KpiService {
     const options = createRequestOption(req);
     return this.http.get<IKpi[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
   }
+
+  findAll(): Observable<EntityArrayResponseType> {
+    return this.http.get<IKpi[]>(`${this.resourceUrl}`, { observe: 'response' });
+  }
 }

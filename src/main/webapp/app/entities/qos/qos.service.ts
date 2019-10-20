@@ -41,4 +41,8 @@ export class QosService {
     const options = createRequestOption(req);
     return this.http.get<IQos[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
   }
+
+  findAll(): Observable<EntityArrayResponseType> {
+    return this.http.get<IQos[]>(`${this.resourceUrl}`, { observe: 'response' });
+  }
 }

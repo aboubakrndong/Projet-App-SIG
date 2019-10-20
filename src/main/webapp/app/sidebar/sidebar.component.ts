@@ -14,6 +14,12 @@ import 'jspdf-autotable';
 import * as html2canvas from 'html2canvas';
 import { PopupComponent } from 'app/popup/popup.component';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { EnvoismsComponent } from 'app/envoisms/envoisms.component';
+import { VuebtsComponent } from 'app/vuebts/vuebts.component';
+
+import { BtsService } from 'app/entities/bts';
+import { VuekpiComponent } from 'app/vuekpi/vuekpi.component';
+import { VueqosComponent } from 'app/vueqos/vueqos.component';
 
 export interface PeriodicElement {
   id?: number;
@@ -36,10 +42,9 @@ export class SidebarComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[];
   zone: IZones;
   selectedValue: number;
-  displayedColumns: string[] = ['nomzone', 'couverture', 'cadastre', 'population'];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
-  constructor(public dialog: MatDialog, private zoneService: ZonesService, private modalService: NgbModal) {}
+  constructor(public dialog: MatDialog, public undialog: MatDialog, private zoneService: ZonesService, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.listzone = new Array<IZones>();
@@ -68,33 +73,44 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  deleteZone(event: any) {
-    this.zoneService.delete(this.selectedValue).subscribe(zone => {
-      console.log(zone);
-      this.zone = zone.body;
+  ConvertDataToPdf() {
+    var data = document.getElementById('contentToConvert');
+    html2canvas(data).then(canvas => {
+      var imgWidth = 105;
+      var pageHeight = 120;
+      var imgHeight = (canvas.height * imgWidth) / canvas.width;
+      var heightLeft = imgHeight;
+
+      const contentDataURL = canvas.toDataURL('image/png');
+      let pdf = new jsPDF('p', 'mm', 'a4');
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+      pdf.save('File.pdf');
     });
   }
 
-  /* ConvertDataToPdf ()
-  {
-    var data = document.getElementById('contentToConvert');
-    html2canvas(data).then(canvas=>{
-      var imgWidth = 105;
-      var pageHeight = 120;
-      var imgHeight = canvas.height * imgWidth / canvas.width;
-      var heightLeft = imgHeight;
-
-      const contentDataURL = canvas.toDataURL('image/png')
-      let pdf = new jsPDF('p', 'mm', 'a4');
-      var position=0;
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth,imgHeight)
-      pdf.save('File.pdf');
-    });
-
-  }*/
-
   ShareData() {
-    const modalRef: NgbModalRef = this.modalService.open(PopupComponent, { windowClass: 'create-modal' });
+    const modalRef: NgbModalRef = this.modalService.open(PopupComponent, { windowClass: 'create-modal', centered: true });
+    modalRef.componentInstance.zone = this.zone;
+  }
+
+  SendAlert() {
+    const dialogRef = this.dialog.open(EnvoismsComponent, {
+      width: '450px',
+      height: '350px'
+    });
+  }
+
+  AffichBts() {
+    const modalRef: NgbModalRef = this.modalService.open(VuebtsComponent, { windowClass: 'create-modal', size: 'lg' });
+    modalRef.componentInstance.zone = this.zone;
+  }
+  AffichKpi() {
+    const modalRef: NgbModalRef = this.modalService.open(VuekpiComponent, { windowClass: 'create-modal', size: 'lg' });
+    modalRef.componentInstance.zone = this.zone;
+  }
+  AffichQos() {
+    const modalRef: NgbModalRef = this.modalService.open(VueqosComponent, { windowClass: 'create-modal', size: 'lg' });
     modalRef.componentInstance.zone = this.zone;
   }
 }
